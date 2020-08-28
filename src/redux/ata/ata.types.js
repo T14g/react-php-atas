@@ -1,0 +1,8 @@
+const AtaTypes = {
+    SET_ULTIMA_ATA : 'SET_ULTIMA_ATA',
+    SET_SETOR_ATA: 'SET_SETOR_ATA',
+    SET_AREAS_SETOR: 'SET_AREAS_SETOR',
+    SET_SELECTED_AREA : 'SET_SELECTED_AREA'
+}
+
+export default AtaTypes;
