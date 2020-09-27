@@ -1,4 +1,4 @@
-import React,{useEffect } from 'react';
+import React,{useEffect} from 'react';
 import { connect } from 'react-redux';
 import { setAreas, setSelectedArea } from '../../redux/ata/ata.actions';
 

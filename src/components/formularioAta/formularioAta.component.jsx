@@ -68,7 +68,8 @@ const salvarTUDO = () =>{
         })
         }).then(() => {
             // //Atualiza a página
-            window.location.reload(false);
+            console.log("foi");
+            // window.location.reload(false);
         })
 }
 
@@ -195,7 +196,7 @@ return(
                 <div className="col-md-12"><Pendencias /></div>
             </div>
 
-            <button className="btn btn-primary" onClick={salvarTUDO}>Salvar Tudo</button>            
+            <button className="btn btn-primary" onClick={salvarTUDO}>Salvar Tudo</button> 
         </div>
     );
 }

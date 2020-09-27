@@ -3,6 +3,7 @@ import PendenciasTypes from './pendencias.types';
 const INITIAL_STATE = {
     pendenciasAntigas : [],
     novasPendencias   : [],
+    emailList         : []
 };
 
 const pendenciasReducer  = (state = INITIAL_STATE, action) =>{
@@ -30,6 +31,12 @@ const pendenciasReducer  = (state = INITIAL_STATE, action) =>{
                 ...state,
                 novasPendencias: action.payload
             }
+
+        case PendenciasTypes.LOAD_USERS_EMAILS:
+            return {
+                ...state,
+                emailList: action.payload
+        }
 
         case PendenciasTypes.ADD_NEW_PENDENCIA:
             return {

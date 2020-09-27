@@ -5,8 +5,11 @@ import {
     addNovaPendencia, 
     setNewPendencias, 
     deleteAllNovasPendencias,
-    saveNewPendencias
+    saveNewPendencias,
+    loadEmails
  } from '../../redux/pendencias/pendencias.actions';
+
+import EmailList from '../emailList/emailList.component';
 
 import './pendencias.styles.scss';
 
@@ -20,8 +23,25 @@ const Pendencias = ({
     loadOldPendencias,
     setNewPendencias,
     clearNewPendencias,
-    saveNewPendencias
+    saveNewPendencias,
+    listaEmail,
+    loadEmails
 }) => {
+
+    useEffect(() => {
+        console.log("loading Emails...");
+
+        const path = "http://localhost/react-php-app/services/getUsers.php";
+        
+        fetch(path, {
+        headers: { "Content-Type": "application/json; charset=utf-8" },
+        method: 'POST',
+        }).then(response => {
+            return response.json();
+        }).then(usuarios => {
+            loadEmails(usuarios);
+        })
+    }, [loadEmails]);
     
     useEffect(() => {
         ((id)=>{
@@ -43,6 +63,7 @@ const Pendencias = ({
                 })
         })(areaID);
     },[areaID,loadOldPendencias, clearNewPendencias]);
+    
     
     const novaPendencia = () => {
         const tamanho =  novasPendencias.length;
@@ -131,7 +152,8 @@ const Pendencias = ({
                             <tr key={i}>
                                 <td>{pendencia.numeroPendencia}</td>
                                 <td><textarea onChange={e => handleChange(pendencia.numeroPendencia, e.target)} name="pendencia" className="form-control" required style={{width: '100%'}} defaultValue={pendencia.pendencia}></textarea></td>
-                                <td><input onChange={e => handleChange(pendencia.numeroPendencia, e.target)} name="responsavel" type="text"  className="form-control" required defaultValue={pendencia.responsavel} /></td>
+                                {/* <td><input onChange={e => handleChange(pendencia.numeroPendencia, e.target)} name="responsavel" type="text"  className="form-control" required defaultValue={pendencia.responsavel} /></td> */}
+                                <td><EmailList chave={i} responsaveis={pendencia.responsavel} pendencia = {pendencia} numero = {pendencia.numeroPendencia} /></td>
                                 <td><input onChange={e => handleChange(pendencia.numeroPendencia, e.target)} name="prazo"  className="form-control" required type="date" defaultValue={pendencia.prazo}/></td>
                                 <td>
                                     <select required className="form-control"
@@ -169,6 +191,7 @@ const mapStateToProps = state => ({
     areaID : state.ata.idArea,
     ultimaAta: state.ata.ultimaAta,
     area : state.ata.areaSelecionada,
+    listaEmail : state.pendencias.emailList
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -176,7 +199,8 @@ const mapDispatchToProps = dispatch => ({
     addNovaPendencia : pendencia => dispatch(addNovaPendencia(pendencia)),
     setNewPendencias : pendencias => dispatch(setNewPendencias(pendencias)),
     clearNewPendencias : () => dispatch(deleteAllNovasPendencias()),
-    saveNewPendencias: pendencia => dispatch(saveNewPendencias(pendencia))
+    saveNewPendencias: pendencia => dispatch(saveNewPendencias(pendencia)),
+    loadEmails : emails => dispatch(loadEmails(emails))
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(Pendencias);

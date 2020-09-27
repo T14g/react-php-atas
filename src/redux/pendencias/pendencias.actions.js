@@ -32,3 +32,8 @@ export const saveNewPendencias = pendencias => ({
     type: PendenciasTypes.SAVE_NEW_PENDENCIAS,
     payload: pendencias
 });
+
+export const loadEmails = emails => ({
+    type: PendenciasTypes.LOAD_USERS_EMAILS,
+    payload: emails
+})
