@@ -7,7 +7,8 @@ import UltimoNumero from '../ultimoNumero/ultimoNumero.component';
 import './formularioAta.styles.scss';
 
 const FormularioAta = ({setor,pendenciasAntigas ,novasPendencias,ultimaAta,areaSelecionada,idArea}) => {
-
+console.log(setor);
+console.log(areaSelecionada);
 const defaultState = {
     localReuniao: "SALA REUNIÃO",
     dataReuniao : "",
@@ -24,12 +25,33 @@ const defaultState = {
 
 const [useDadosAta,  setDadosAta] = useState(defaultState);
 
+//Valida se campos importantes estão em branco antes do envio dos dados
+const validarDados = () => {
+    let validado = true ;
+
+    const {
+        responsavelAta,
+        responsavelReuniao,
+        } = useDadosAta;
+
+    //Valida se não houver valores em branco
+    const camposValidar = [responsavelAta, responsavelReuniao, setor,areaSelecionada];
+    camposValidar.map(campo =>campo === "" ? validado = false : true);
+    
+    //Chama o método que envia tudo para o backend salvar
+    if(validado){
+        salvarTUDO();
+    }else{
+        alert("Verifique se selecinou o Setor, área e preencheu os responsáveis!");
+    }
+}
+
 
 //Envia tudo para o back-end e atualiza a página
 const salvarTUDO = () =>{
     const path = "http://localhost/react-php-app/services/salvarTUDO.php";
     const novasSalvas = novasPendencias.filter(pendencia => pendencia.salva === true);
-    const pendenciasAta = [...novasSalvas, ...pendenciasAntigas];
+    const pendenciasAta = [...novasSalvas];
 
         const {
         localReuniao,
@@ -196,7 +218,7 @@ return(
                 <div className="col-md-12"><Pendencias /></div>
             </div>
 
-            <button className="btn btn-primary" onClick={salvarTUDO}>Salvar Tudo</button> 
+            <button className="btn btn-primary" onClick={validarDados}>Salvar Tudo</button> 
         </div>
     );
 }

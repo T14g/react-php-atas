@@ -68,7 +68,7 @@ const EmailList = ({responsaveis, novasPendencias, saveNewPendencias, numero, li
 
     return(
         <div className="emailList">
-            <input className="campoBusca" name={`busca-${chave}`} placeholder="Digite um nome" onChange={(e) => filterEmail(e.target.value)}/>
+            <input className="campoBusca form-control" name={`busca-${chave}`} placeholder="Digite um nome" onChange={(e) => filterEmail(e.target.value)}/>
             {
                 emailList.emailsState.length > 0  && document.querySelector(`[name="busca-${chave}"]`).value ? (
                     <React.Fragment>

@@ -23,57 +23,72 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 $data = file_get_contents('php://input');
 $data = json_decode($data, true);
 
-var_dump($data);
+// var_dump($data);
 
-// $datareuniao = $data['dataReuniao'];
-// $setor = $data['setor'];
-// $local = $data['localReuniao'];
-// $agendado = "";
-// $capa_numero = $data['numero'];
-// $capa_ata = $data['responsavelAta'];
-// $capa_reuniao = $data['responsavelReuniao'];
-// $participantes = $data['participantes'];
-// $ausentes = $data['ausentes'];
-// $convidados = $data['convidados'];
-// $arquivo = $data['arquivo'];
-// $duracao = $data['duracao'];
-// $tipoata = $data['idArea'];
-// $pauta = $data['pauta'];
-// $objetivo = $data['objetivo'];
-// $pendencias = $data['pendencias'];
+$datareuniao = $data['dataReuniao'];
+$setor = $data['setor'];
+$local = $data['localReuniao'];
+$agendado = "";
+$capa_numero = $data['numero'];
+$capa_ata = $data['responsavelAta'];
+$capa_reuniao = $data['responsavelReuniao'];
+$participantes = $data['participantes'];
+$ausentes = $data['ausentes'];
+$convidados = $data['convidados'];
+$arquivo = $data['arquivo'];
+$duracao = $data['duracao'];
+$tipoata = $data['idArea'];
+$pauta = $data['pauta'];
+$objetivo = $data['objetivo'];
+$pendencias = $data['pendencias'];
 
 // // echo $setor;
-// $conn = mysqli_connect("localhost", "root", "", "atas");
+$conn = mysqli_connect("localhost", "root", "", "atas");
 
 // // // capa 
-// $sql = 'INSERT INTO `capa_ata`(`data`, numero, setor, duracao, `local`, outlook, responsavelata, responsavelreuniao,
-//                             participantes, ausentes, convidados, arquivo, tipoata, pauta, objetivo)
-//         VALUES("'.$datareuniao.'","'.$capa_numero.'", "'.$setor.'", "'.$duracao.'", "'.$local.'", "'.$agendado.'", 
-//         "'.$capa_ata.'", "'.$capa_reuniao.'", "'.$participantes.'", "'.$ausentes.'", "'.$convidados.'", "'.$arquivo.'", 
-//         "'.$tipoata.'", "'.$pauta.'", "'.$objetivo.'")';
+$sql = 'INSERT INTO `capa_ata`(`data`, numero, setor, duracao, `local`, outlook, responsavelata, responsavelreuniao,
+                            participantes, ausentes, convidados, arquivo, tipoata, pauta, objetivo)
+        VALUES("'.$datareuniao.'","'.$capa_numero.'", "'.$setor.'", "'.$duracao.'", "'.$local.'", "'.$agendado.'", 
+        "'.$capa_ata.'", "'.$capa_reuniao.'", "'.$participantes.'", "'.$ausentes.'", "'.$convidados.'", "'.$arquivo.'", 
+        "'.$tipoata.'", "'.$pauta.'", "'.$objetivo.'")';
 
-// $result = mysqli_query($conn, $sql);
+$result = mysqli_query($conn, $sql);
 
-// // var_dump($result);
+// var_dump($result);
 // // // var_dump($pendencias);
 
-// foreach($pendencias as $p){
-//     $numeros = explode(".",$p['numeroPendencia']);
-//     $numeroAta = $numeros[0];
-//     $numeroPendencia = $numeros[1];
-//     $pendencia = $p['pendencia'];
-//     $prazo = $p['prazo'];
-//     $responsavel = $p['responsavel'];
-//     $status = $p['status'];
+foreach($pendencias as $p){
+        $numeros = explode(".",$p['numeroPendencia']);
+        $numeroAta = $numeros[0];
+        $numeroPendencia = $numeros[1];
+        $pendencia = $p['pendencia'];
+        $prazo = $p['prazo'];
+
+        $ids   = "";
+        $nomes = "";
+        $responsaveis = $p['responsavel'];
+        $tamanho      = count($responsaveis);
+        $separador = $tamanho > 1  ? ';' : ''; 
+            
+        //    $limiter      = 0;
+        foreach($responsaveis as $r){
+            $separadorID = $tamanho > 1  ? ';' : ''; 
+            $separadorNome = $tamanho > 1  ? ', ' : ''; 
+
+            $ids   .= $r['id'] . $separadorID;
+            $nomes .= $r['nome'] . $separadorNome;
+            $tamanho--;
+        }
+    $status = $p['status'];
 
 
-//     $sql2 = 'INSERT INTO `itens_ata`(numero, pendencia, prazo, responsavel, `status`, numerocapa, tipoatacapa, setoratacapa)
-//     VALUES("'.$numeroPendencia.'", "'.$pendencia.'", "'.$prazo.'", 
-//     "'. $responsavel.'", "'. $status.'", "'. $capa_numero.'", "'. $tipoata.'", "'. $setor.'" )';
+    $sql2 = 'INSERT INTO `itens_ata`(numero, pendencia, prazo, responsavel, `status`, numerocapa, tipoatacapa, setoratacapa, idusuario)
+    VALUES("'.$numeroPendencia.'", "'.$pendencia.'", "'.$prazo.'", 
+    "'. $nomes.'", "'. $status.'", "'. $capa_numero.'", "'. $tipoata.'", "'. $setor.'", "'. $ids.'")';
 
-//     $result2 = mysqli_query($conn, $sql2);
-//     var_dump($result2);
-// }
+    $result2 = mysqli_query($conn, $sql2);
+    var_dump($result2);
+}
 
 ?>
 

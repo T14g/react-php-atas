@@ -109,15 +109,17 @@ const Pendencias = ({
         saveNewPendencias(newArray);
     }
 
+    //Cancela uma pendência removendo-a do state
     const cancelar = id => {
-        // const newArray = novasPendencias.filter(pendencia => pendencia.numeroPendencia !== id);
-        
-        // setPendencias({...usePendencias, novasPendencias : newArray});
+        const newArray = novasPendencias.filter(pendencia => pendencia.numeroPendencia !== id);
+
+        console.log(newArray);
+        setNewPendencias(newArray);
     }
 
     return(
         < >
-            <h3 className="mb-3">Pendências da área {area}</h3>
+            <h3 className="mb-3">Pendências da área {area} <small style={{fontSize:"14x",fontWeight:"bold",color:"red"}}>(preencha os campos e aperte Validar)</small></h3>
 
             <table className="table table-bordered" >
                 <thead>
@@ -171,7 +173,7 @@ const Pendencias = ({
                                             <button className="btn btn-danger w-100" onClick={() => cancelar(pendencia.numeroPendencia)}>Cancelar</button>
                                         ) : (
                                             
-                                            <button className="btn btn-success w-100" onClick={() => salvar(pendencia.numeroPendencia)}>Salvar</button>
+                                            <button className="btn btn-success w-100" onClick={() => salvar(pendencia.numeroPendencia)}>Validar</button>
                                         )
                                     }
                                 </td>
