@@ -23,8 +23,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 $data = file_get_contents('php://input');
 $data = json_decode($data, true);
 
-// var_dump($data);
-
 $datareuniao = $data['dataReuniao'];
 $setor = $data['setor'];
 $local = $data['localReuniao'];
@@ -42,10 +40,9 @@ $pauta = $data['pauta'];
 $objetivo = $data['objetivo'];
 $pendencias = $data['pendencias'];
 
-// // echo $setor;
 $conn = mysqli_connect("localhost", "root", "", "atas");
 
-// // // capa 
+
 $sql = 'INSERT INTO `capa_ata`(`data`, numero, setor, duracao, `local`, outlook, responsavelata, responsavelreuniao,
                             participantes, ausentes, convidados, arquivo, tipoata, pauta, objetivo)
         VALUES("'.$datareuniao.'","'.$capa_numero.'", "'.$setor.'", "'.$duracao.'", "'.$local.'", "'.$agendado.'", 
@@ -53,9 +50,6 @@ $sql = 'INSERT INTO `capa_ata`(`data`, numero, setor, duracao, `local`, outlook,
         "'.$tipoata.'", "'.$pauta.'", "'.$objetivo.'")';
 
 $result = mysqli_query($conn, $sql);
-
-// var_dump($result);
-// // // var_dump($pendencias);
 
 foreach($pendencias as $p){
         $numeros = explode(".",$p['numeroPendencia']);

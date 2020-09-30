@@ -45,17 +45,16 @@ const EmailList = ({responsaveis, novasPendencias, saveNewPendencias, numero, li
         saveNewPendencias(newArray);
     }
 
+    //Filter emails by typed characters
     const filterEmail = typed => {
-        console.log("disparou");
         let filteredEmails;
 
         if(typed.length > 0){
-            filteredEmails = emails.filter(email => email.nome.includes(typed));
+            filteredEmails = emails.filter(email => email.nome.toLowerCase().includes(typed.toLowerCase()));
         }else{
             filteredEmails = [];
         }
         
-        // console.log(filteredEmails);
         setEmailList({...emailList ,emailsState : filteredEmails});
         
     }

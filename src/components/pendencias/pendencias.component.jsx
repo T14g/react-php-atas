@@ -11,8 +11,6 @@ import {
 
 import EmailList from '../emailList/emailList.component';
 
-import './pendencias.styles.scss';
-
 const Pendencias = ({
     area,
     areaID, 
@@ -96,7 +94,7 @@ const Pendencias = ({
                     if(pendencia.pendencia && pendencia.responsavel){
                         pendencia.salva = true;
                     }else{
-                        alert("Vai ti fude o merda");
+                        alert("Preencha todos os campos antes de Validar");
                     }
 
                     if(!pendencia.status){
@@ -119,8 +117,8 @@ const Pendencias = ({
 
     return(
         < >
-            <h3 className="mb-3">Pendências da área {area} <small style={{fontSize:"14x",fontWeight:"bold",color:"red"}}>(preencha os campos e aperte Validar)</small></h3>
-
+            <h3 className="mb-3">Pendências da área {area}</h3>
+            <p>Preencha todos os campos em seguida aperte <strong>Validar</strong> para que a pendência seja <strong>Salva</strong> junto a ATA</p>
             <table className="table table-bordered" >
                 <thead>
                     <tr className="borda">
@@ -154,7 +152,6 @@ const Pendencias = ({
                             <tr key={i}>
                                 <td>{pendencia.numeroPendencia}</td>
                                 <td><textarea onChange={e => handleChange(pendencia.numeroPendencia, e.target)} name="pendencia" className="form-control" required style={{width: '100%'}} defaultValue={pendencia.pendencia}></textarea></td>
-                                {/* <td><input onChange={e => handleChange(pendencia.numeroPendencia, e.target)} name="responsavel" type="text"  className="form-control" required defaultValue={pendencia.responsavel} /></td> */}
                                 <td><EmailList chave={i} responsaveis={pendencia.responsavel} pendencia = {pendencia} numero = {pendencia.numeroPendencia} /></td>
                                 <td><input onChange={e => handleChange(pendencia.numeroPendencia, e.target)} name="prazo"  className="form-control" required type="date" defaultValue={pendencia.prazo}/></td>
                                 <td>

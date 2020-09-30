@@ -1,6 +1,9 @@
 import React from 'react';
 
-const Input = ({placeholder ,onChange}) => 
-    <input placeholder={placeholder} onChange={(e) => onChange(e)} type="text" className="form-control"/>
+const Input = ({label,type,handleChange}) => 
+    <React.Fragment>
+        <label className="small">{label}</label>
+        <input type={type} className="form-control" required onChange={handleChange}/>
+    </React.Fragment>
 
 export default Input;

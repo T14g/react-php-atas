@@ -34,13 +34,13 @@ const UltimaNumero = ({area, ultimaAta, setUltimaAta}) => {
         );
 }
 
-    const mapStateToProps = state => ({
-        area : state.ata.idArea,
-        ultimaAta: state.ata.ultimaAta
-    });
+const mapStateToProps = state => ({
+    area : state.ata.idArea,
+    ultimaAta: state.ata.ultimaAta
+});
 
-    const mapDispatchToProps = dispatch => ({
-        setUltimaAta : ata => dispatch(setUltima(ata))
-    })
+const mapDispatchToProps = dispatch => ({
+    setUltimaAta : ata => dispatch(setUltima(ata))
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(UltimaNumero);

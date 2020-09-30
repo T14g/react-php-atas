@@ -3,12 +3,14 @@ import { connect } from 'react-redux';
 import Pendencias from '../pendencias/pendencias.component';
 import Areas from '../areas/areas.component';
 import Setores from '../setores/setores.component';
+import Locais from '../locais/locais.component';
 import UltimoNumero from '../ultimoNumero/ultimoNumero.component';
-import './formularioAta.styles.scss';
+import Input from '../input/input.component';
+import TextArea from '../textarea/textarea.component';
+import './formulario.styles.scss';
 
-const FormularioAta = ({setor,pendenciasAntigas ,novasPendencias,ultimaAta,areaSelecionada,idArea}) => {
-console.log(setor);
-console.log(areaSelecionada);
+const Formulario = ({setor,novasPendencias,ultimaAta,areaSelecionada,idArea}) => {
+
 const defaultState = {
     localReuniao: "SALA REUNIÃO",
     dataReuniao : "",
@@ -90,7 +92,6 @@ const salvarTUDO = () =>{
         })
         }).then(() => {
             // //Atualiza a página
-            console.log("foi");
             // window.location.reload(false);
         })
 }
@@ -100,31 +101,21 @@ return(
         <div className="formulario">
             <div className="row">
                 <div className="col-md-12">
-                    <h2>Digite os dados da nova ata:</h2>
+                    <h2>Cadastro de atas com pendências</h2>
+                    <p>Digite todos os dados da sua ata, adicione pendências em seguida aperta o botão <strong>Validar</strong>, e quando finalizar tudo aperte <strong>Salvar ATA</strong></p>
                 </div>
             </div>
+
             <div className="row">
+                <div className="col-md-4"><Setores/></div>
+
                 <div className="col-md-4">
-                    <label className="small">Data</label>
-                    <input type="date" className="form-control" required
-                    onChange={(e) => setDadosAta({...useDadosAta, dataReuniao : e.target.value})}
-                    />
+                    <Input label="Data" type="date"
+                    handleChange={(e) => setDadosAta({...useDadosAta, dataReuniao : e.target.value})}/>
                 </div>
 
                 <div className="col-md-4">
-                    <Setores />
-                </div>
-
-                <div className="col-md-4">
-                <label className="small">Local</label>
-                <select required className="form-control"
-                onChange={(e) => setDadosAta({...useDadosAta, localReuniao : e.target.value})}>
-                    <option value="Sala Reunião">SALA REUNIÃO</option>
-                    <option value="Sala VIP">SALA VIP</option>
-                    <option value="Sala Conhecimento">SALA CONHECIMENTO</option>
-                    <option value="Auditório">AUDITÓRIO</option>
-                    <option value="Setor">SETOR</option>
-                </select>
+                    <Locais onChange={(e) => setDadosAta({...useDadosAta, localReuniao : e.target.value})}/>
                 </div>
             </div>
 
@@ -137,57 +128,39 @@ return(
                 </div>
 
                 <div className="col-md-4">
-                    <label  className="small">Reponsável da ata:</label>
-                    <input type="text" className="form-control" required  
-                    onChange={(e) => setDadosAta({...useDadosAta, responsavelAta : e.target.value})}/>
+                    <Input label="Reponsável da ata" type="text"
+                    handleChange={(e) => setDadosAta({...useDadosAta, responsavelAta : e.target.value})}/>
                 </div>
 
                 <div className="col-md-4">
-                    <label  className="small">Reponsável da reunião:</label>
-                    <input type="text" className="form-control" required  
-                    onChange={(e) => setDadosAta({...useDadosAta, responsavelReuniao : e.target.value})}/>
+                    <Input label="Reponsável da reunião" type="text"
+                    handleChange={(e) => setDadosAta({...useDadosAta, responsavelReuniao : e.target.value})}/>
                 </div>
             </div>
 
             <div className="row">
                 <div className="col-md-4">
-                    <label  className="small">Participantes:</label>
-                    <textarea name="participantes" type="text" 
-                    cols="20" required rows="3" className="form-control"
-                    onChange={(e) => setDadosAta({...useDadosAta, participantes : e.target.value})}
-                    ></textarea>
+                    <TextArea label="Participantes" name="participantes" handleChange={(e) => setDadosAta({...useDadosAta, participantes : e.target.value})} />
                 </div>
 
                 <div className="col-md-4">
-                    <label  className="small">Ausentes:</label>
-                    <textarea name="participantes" type="text" 
-                    cols="20" required rows="3" className="form-control"
-                    onChange={(e) => setDadosAta({...useDadosAta, ausentes : e.target.value})}
-                    ></textarea>
+                    <TextArea label="Ausentes" name="ausentes" handleChange={(e) => setDadosAta({...useDadosAta, ausentes : e.target.value})} />
                 </div>
 
                 <div className="col-md-4">
-                    <label  className="small">Convidados:</label>
-                    <textarea name="participantes" type="text" 
-                    cols="20" required rows="3" className="form-control"
-                    onChange={(e) => setDadosAta({...useDadosAta, convidados : e.target.value})}
-                    ></textarea>
+                    <TextArea label="Convidados" name="convidados" handleChange={(e) => setDadosAta({...useDadosAta, convidados : e.target.value})} />
                 </div>
             </div>
 
             <div className="row">
                 <div className="col-md-4">
-                    <label className="small">Duração:</label>
-                    <input type="text" className="form-control" 
-                    onChange={(e) => setDadosAta({...useDadosAta, duracao : e.target.value})}
-                    required />
+                    <Input label="Duração" type="text"
+                    handleChange={(e) => setDadosAta({...useDadosAta, duracao : e.target.value})}/>
                 </div>
 
-                <div className="col-md-8">
-                    <label className="small">Arquivo:</label>
-                    <input type="text" className="form-control" 
-                    onChange={(e) => setDadosAta({...useDadosAta, arquivo : e.target.value})}
-                    required  />
+                <div className="col-md-4">
+                    <Input label="Arquivo" type="text"
+                    handleChange={(e) => setDadosAta({...useDadosAta, arquivo : e.target.value})}/>
                 </div>
             </div>
 
@@ -210,12 +183,11 @@ return(
                         </tr>
                     </tbody>
                 </table>
-
                 </div>
             </div>
 
             <div className="row">
-                <div className="col-md-12"><Pendencias /></div>
+                <div className="col-md-12"><Pendencias/></div>
             </div>
 
             <button className="btn btn-primary" onClick={validarDados}>Salvar Tudo</button> 
@@ -233,4 +205,4 @@ const mapStateToProps = state => ({
     ultimaAta: state.ata.ultimaAta
 });
 
-export default connect(mapStateToProps)(FormularioAta);
+export default connect(mapStateToProps)(Formulario);
