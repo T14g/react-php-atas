@@ -26,10 +26,11 @@ const UltimaNumero = ({area, ultimaAta, setUltimaAta}) => {
         })
     },[area, setUltimaAta]);
 
+    //Exibe o número da nova ata caso uma área esteja selecionada
     return(
         < >
-            <label className="small" >Número:</label>
-            <input type="text" value={ultimaAta} className="form-control" readOnly/>
+            <label className="small" ><strong>Número da ata</strong></label>
+            <input type="text" value={area !== "" ? ultimaAta : ""} className="form-control" readOnly/>
         </>
         );
 }

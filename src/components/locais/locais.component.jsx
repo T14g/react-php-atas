@@ -2,7 +2,7 @@ import React from 'react';
 
 const Locais = ({onChange}) =>
     <React.Fragment>
-        <label className="small">Local</label>
+        <label className="small"><strong>Local</strong></label>
             <select required className="form-control"
             onChange={onChange}>
                 <option value="Sala Reunião">SALA REUNIÃO</option>

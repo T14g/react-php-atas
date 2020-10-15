@@ -36,7 +36,7 @@ const Areas = ({setor, areas, setAreas, setSelectedArea}) => {
 
     return(
         < >
-            <label className="small" >Área:</label>
+            <label className="small" ><strong>Área</strong></label>
             <select required 
                 onChange={(e) => areaSelected(e.target.value)}
                 className="form-control">

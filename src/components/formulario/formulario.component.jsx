@@ -10,7 +10,7 @@ import TextArea from '../textarea/textarea.component';
 import './formulario.styles.scss';
 
 const Formulario = ({setor,novasPendencias,ultimaAta,areaSelecionada,idArea}) => {
-
+console.log(areaSelecionada);
 const defaultState = {
     localReuniao: "SALA REUNIÃO",
     dataReuniao : "",
@@ -110,10 +110,12 @@ return(
                 <div className="col-md-4"><Setores/></div>
 
                 <div className="col-md-4">
-                    <Input label="Data" type="date"
-                    handleChange={(e) => setDadosAta({...useDadosAta, dataReuniao : e.target.value})}/>
+                    <div className="row">
+                        <div className="col-md-8"><Areas/></div>
+                        <div className="col-md-4"><UltimoNumero/></div>
+                    </div>
                 </div>
-
+                
                 <div className="col-md-4">
                     <Locais onChange={(e) => setDadosAta({...useDadosAta, localReuniao : e.target.value})}/>
                 </div>
@@ -121,10 +123,8 @@ return(
 
             <div className="row">
                 <div className="col-md-4">
-                    <div className="row">
-                        <div className="col-md-8"><Areas/></div>
-                        <div className="col-md-4"><UltimoNumero/></div>
-                    </div>
+                    <Input label="Data" type="date"
+                    handleChange={(e) => setDadosAta({...useDadosAta, dataReuniao : e.target.value})}/>
                 </div>
 
                 <div className="col-md-4">
@@ -186,11 +186,15 @@ return(
                 </div>
             </div>
 
-            <div className="row">
-                <div className="col-md-12"><Pendencias/></div>
-            </div>
-
-            <button className="btn btn-primary" onClick={validarDados}>Salvar Tudo</button> 
+            {
+                areaSelecionada !== "" ? (
+                    <div className="row">
+                        <div className="col-md-12"><Pendencias/></div>
+                    </div>
+                ) : null
+            }
+    
+            <button className="btn btn-success float-right" onClick={validarDados}>Salvar Tudo</button> 
         </div>
     );
 }

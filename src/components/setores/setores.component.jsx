@@ -6,7 +6,7 @@ const Setores = ({setSetorAta}) => {
 
     return(
         < >
-            <label className="small" >Setor</label>
+            <label className="small"><strong>Setor</strong></label>
             <select
             onChange={(e) => setSetorAta(e.target.value)}
             required className="form-control"

@@ -9,15 +9,16 @@
         color: #000;
         font-weight: 800;
         z-index: 100;
-        background: #c6c6c6;
+        border: 1px #000 solid;
+        background: #fff;
         width: 230px;
         height: 255px;
         overflow-y: scroll;
 
         li{
-            background: #c6c6c6;
             margin-bottom: 10px;
             font-size: 12px;
+            background: #e43c83;
             padding: 0 5px;
             border-radius: 20px;
             position: relative;
@@ -30,16 +31,17 @@
            span{
                display: block;
                padding: 5px 10px;
-               border: 1px #000 solid;           
+               color: #fff;      
            }
             .btnSave{
-                background: green;
-                color: #fff;
+                background: #ffffff;
+                color: #000;
                 display: block;
                 margin-left: 10px;
-                position: absolute;      
-                top: 6px;
-                right: 17px;
+                position: absolute;
+                font-weight: 800;
+                top: 4px;
+                right: 9px;
                 border-radius: 30px;
                 font-family: Arial, Helvetica, sans-serif;
                 border: none;
@@ -65,8 +67,8 @@
         font-weight: 800;
 
         li{
-            background: #c6c6c6;
-            margin-bottom: 10px;
+            background: #e43c83;
+            margin-bottom: 5px;
             font-size: 12px;
             padding: 5px 19px;
             border-radius: 20px;
@@ -76,16 +78,18 @@
                 display: block;
                 max-width: 70px;
                 font-size: 10px;
+                color: #fff;
             }
 
             .btnDelete{
                 margin-left: 10px;
                 border-radius: 30px;
-                background: red;
+                background: #5a3a55;
                 color: #fff;
+                font-weight: 600;
                 border: none;
                 position: absolute;
-                top: 4px;
+                top: 3px;
                 right: 8px;
 
 
