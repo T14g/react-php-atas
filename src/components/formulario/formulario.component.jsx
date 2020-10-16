@@ -158,7 +158,7 @@ return(
                     handleChange={(e) => setDadosAta({...useDadosAta, duracao : e.target.value})}/>
                 </div>
 
-                <div className="col-md-4">
+                <div className="col-md-8">
                     <Input label="Arquivo" type="text"
                     handleChange={(e) => setDadosAta({...useDadosAta, arquivo : e.target.value})}/>
                 </div>
@@ -169,7 +169,7 @@ return(
                 <table className="table table-bordered" >
                     <tbody>
                         <tr>
-                            <td style={{width: "8%"}} className="pauta" type="text" cols="80" > Pauta:</td>
+                            <td style={{width: "8%"}} className="pauta" type="text" cols="80" ><strong>Pauta</strong></td>
                             <td> <textarea onChange={(e) => setDadosAta({...useDadosAta, pauta : e.target.value})} className="form-control" required></textarea> </td>
                         </tr>
                     </tbody>
@@ -178,7 +178,7 @@ return(
                 <table className="table table-bordered" >
                     <tbody>
                         <tr>
-                            <td style={{width: "7%"}} className="pauta" type="text" cols="80"> Objetivo:</td>
+                            <td style={{width: "7%"}} className="pauta" type="text" cols="80"><strong>Objetivo</strong></td>
                             <td> <textarea onChange={(e) => setDadosAta({...useDadosAta, objetivo : e.target.value})} className="form-control" required ></textarea> </td>
                         </tr>
                     </tbody>
