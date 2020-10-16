@@ -1,15 +1,29 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 import { connect } from 'react-redux';
 import './emailList.style.scss';
 
 import { saveNewPendencias } from '../../redux/pendencias/pendencias.actions';
 
-const EmailList = ({responsaveis, novasPendencias, saveNewPendencias, numero, listaEmails, chave}) => {
-    console.log(listaEmails);
-    const emails = [...listaEmails];
+const EmailList = ({
+    responsaveis, 
+    novasPendencias, 
+    saveNewPendencias, 
+    numero, 
+    listaEmails, 
+    chave,
+    editando = false
+    }) => {
 
     const [emailList, setEmailList] = useState({emailsState : [], searching: '', selectedEmails : [], usuarios:[]});
+
+    useEffect(() => {
+        if(responsaveis.length > 0 && editando){
+            setEmailList({...emailList, selectedEmails: responsaveis});
+        }
+    }, [setEmailList,editando, emailList, responsaveis]);
     
+    const emails = [...listaEmails,emailList, responsaveis,editando];
+
     const updatePendencia = responsavel => {
         let nomeResponsavel   = responsavel.nome;
         let idResponsavel     = responsavel.id;
@@ -28,7 +42,6 @@ const EmailList = ({responsaveis, novasPendencias, saveNewPendencias, numero, li
         //Limpa o campo de busca
         document.querySelector(`[name="busca-${chave}"]`).value = "";
         saveNewPendencias(newArray);
-        console.log(novasPendencias);
     }
 
     const deleteEmail = email => {
@@ -50,7 +63,7 @@ const EmailList = ({responsaveis, novasPendencias, saveNewPendencias, numero, li
         let filteredEmails;
 
         if(typed.length > 0){
-            filteredEmails = emails.filter(email => email.nome.toLowerCase().includes(typed.toLowerCase()));
+            filteredEmails = emails.filter(email => email.nome && email.nome.toLowerCase().includes(typed.toLowerCase()));
         }else{
             filteredEmails = [];
         }
@@ -85,7 +98,7 @@ const EmailList = ({responsaveis, novasPendencias, saveNewPendencias, numero, li
             }
             <ul className="savedEmails">
                 {
-                    responsaveis.length > 0 ? (
+                    responsaveis.length > 0 && !editando ? (
                         responsaveis.map(responsavel=>
                         <li key={responsavel.id}>
                         <span>{responsavel.nome}</span><button 
@@ -93,6 +106,14 @@ const EmailList = ({responsaveis, novasPendencias, saveNewPendencias, numero, li
                         onClick={() => deleteEmail(responsavel)}
                         >X</button>
                         </li>)
+                    ) : emailList.selectedEmails.length > 0 && editando  ? (
+                        emailList.selectedEmails.map(responsavel=>
+                            <li key={responsavel.id}>
+                            <span>{responsavel.nome}</span><button 
+                            className="btnDelete"
+                            onClick={() => deleteEmail(responsavel)}
+                            >X</button>
+                            </li>)
                     ) : null
                 }
             </ul>

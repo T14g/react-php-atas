@@ -10,7 +10,7 @@ import TextArea from '../textarea/textarea.component';
 import './formulario.styles.scss';
 
 const Formulario = ({setor,novasPendencias,ultimaAta,areaSelecionada,idArea}) => {
-console.log(areaSelecionada);
+
 const defaultState = {
     localReuniao: "SALA REUNIÃO",
     dataReuniao : "",

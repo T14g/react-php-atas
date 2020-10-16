@@ -17,7 +17,7 @@ const UltimaNumero = ({area, ultimaAta, setUltimaAta}) => {
             return response.json();
         }).then(result => {
             let ultima = parseInt(result[0]['MaiorID']) + 1;
-            console.log(ultima);
+        
 
             if(!ultima){
                 ultima = 1;

@@ -10,6 +10,7 @@ import {
  } from '../../redux/pendencias/pendencias.actions';
 
 import EmailList from '../emailList/emailList.component';
+import EditorPendencia from '../editorPendencia/editorPendencia.component';
 
 const Pendencias = ({
     area,
@@ -54,8 +55,14 @@ const Pendencias = ({
                 }).then(response => {
                     return response.json();
                 }).then(result => {
-                    console.log(result);
+
+                    //Adiciona a propriedade editing como false por padrão
                     let pendencias = result.filter(pendencia => pendencia.status === "PENDENTE");
+                    pendencias = pendencias.map(pendencia=>{
+                        pendencia.editando = false;
+                        return pendencia;
+                    });
+                    
                     clearNewPendencias();
                     loadOldPendencias(pendencias);
                 })
@@ -115,6 +122,19 @@ const Pendencias = ({
         setNewPendencias(newArray);
     }
 
+    // const editarPendencia = id => {
+    //     const newArray = pendenciasAntigas.map(pendencia => {
+    //         if(pendencia.iditens === id){
+    //             pendencia.editando = true;
+    //         }
+            
+    //         return pendencia;
+    //         }     
+    //     );
+            
+    //     loadOldPendencias(newArray);
+    // }
+
     return(
         < >
             <h3 className="mb-3">Pendências da área {area}</h3>
@@ -134,14 +154,16 @@ const Pendencias = ({
                     {   
                         pendenciasAntigas.map((pendencia, i) => 
                             pendencia.status === 'PENDENTE' ? (
-                                <tr key={i}>
-                                    <td>{pendencia.numeroPendencia}</td>
-                                    <td>{pendencia.pendencia}</td>
-                                    <td>{pendencia.responsavel}</td>
-                                    <td>{pendencia.prazo}</td>
-                                    <td>{pendencia.status}</td>
-                                    <td></td>
-                                </tr>
+                                !pendencia.editando ? (
+                                    <tr key={i}>
+                                        <td>{pendencia.numeroPendencia}</td>
+                                        <td>{pendencia.pendencia}</td>
+                                        <td>{pendencia.responsavel}</td>
+                                        <td>{pendencia.prazo}</td>
+                                        <td>{pendencia.status}</td>
+                                        <td></td>
+                                    </tr>
+                                ) : <EditorPendencia pendencia={pendencia} />
                             ) : null
                         )
                     }
@@ -152,7 +174,7 @@ const Pendencias = ({
                             <tr key={i}>
                                 <td>{pendencia.numeroPendencia}</td>
                                 <td><textarea onChange={e => handleChange(pendencia.numeroPendencia, e.target)} name="pendencia" className="form-control" required style={{width: '100%'}} defaultValue={pendencia.pendencia}></textarea></td>
-                                <td><EmailList chave={i} responsaveis={pendencia.responsavel} pendencia = {pendencia} numero = {pendencia.numeroPendencia} /></td>
+                                <td><EmailList chave={i} responsaveis={pendencia.responsavel} numero = {pendencia.numeroPendencia} /></td>
                                 <td><input onChange={e => handleChange(pendencia.numeroPendencia, e.target)} name="prazo"  className="form-control" required type="date" defaultValue={pendencia.prazo}/></td>
                                 <td>
                                     <select required className="form-control"
