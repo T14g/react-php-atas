@@ -11,6 +11,7 @@ import {
 
 import EmailList from '../emailList/emailList.component';
 import EditorPendencia from '../editorPendencia/editorPendencia.component';
+import Pendencia from '../pendencia/pendencia.component';
 
 const Pendencias = ({
     area,
@@ -122,18 +123,18 @@ const Pendencias = ({
         setNewPendencias(newArray);
     }
 
-    // const editarPendencia = id => {
-    //     const newArray = pendenciasAntigas.map(pendencia => {
-    //         if(pendencia.iditens === id){
-    //             pendencia.editando = true;
-    //         }
+    const editarPendencia = id => {
+        const newArray = pendenciasAntigas.map(pendencia => {
+            if(pendencia.iditens === id){
+                pendencia.editando = true;
+            }
             
-    //         return pendencia;
-    //         }     
-    //     );
+            return pendencia;
+            }     
+        );
             
-    //     loadOldPendencias(newArray);
-    // }
+        loadOldPendencias(newArray);
+    }
 
     return(
         < >
@@ -154,16 +155,7 @@ const Pendencias = ({
                     {   
                         pendenciasAntigas.map((pendencia, i) => 
                             pendencia.status === 'PENDENTE' ? (
-                                !pendencia.editando ? (
-                                    <tr key={i}>
-                                        <td>{pendencia.numeroPendencia}</td>
-                                        <td>{pendencia.pendencia}</td>
-                                        <td>{pendencia.responsavel}</td>
-                                        <td>{pendencia.prazo}</td>
-                                        <td>{pendencia.status}</td>
-                                        <td></td>
-                                    </tr>
-                                ) : <EditorPendencia pendencia={pendencia} />
+                                <Pendencia objeto={pendencia} />
                             ) : null
                         )
                     }
