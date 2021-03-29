@@ -6,6 +6,7 @@ const INITIAL_STATE = {
     areasSetor: [],
     idArea : "",
     ultimaAta: 1,
+    showModal: false
 }
 
 const ataReducer = (state = INITIAL_STATE, action) => {

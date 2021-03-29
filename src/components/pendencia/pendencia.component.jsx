@@ -29,28 +29,15 @@ const Pendencia = objeto => {
 
     return(
         <>
-        {   
-           
-            editando === false ? (
-                <tr key={key}>
-                    <td>{numeroPendencia}</td>
-                    <td>{pendencia}</td>
-                    <td>{responsavel}</td>
-                    <td>{prazo}</td>
-                    <td>{status}</td>
-                    <td><button className="btn btn-primary w-100" onClick={() => setPendenciaState({editando: true})} >Editar</button></td>
-                </tr>
-            ) : (
-                <tr key={key}>
-                    <td>{numeroPendencia}</td>
-                    <td><textarea name="pendencia" className="form-control" required style={{width: '100%'}} defaultValue={pendencia}></textarea></td>
-                    <td><EmailList tipo="editando" chave={key} responsaveis={responsavel}  pendencia = {pendencia} numero = {pendencia.numeroPendencia} /></td>
-                    <td>DATA</td>
-                    <td>{pendencia.status}</td>
-                    <td><button className="btn btn-primary w-100" onClick={() => setPendenciaState({editando: true})} >Editar</button></td>
-                </tr>
-            )
-        }
+            <tr key={key}>
+                <td>{numeroPendencia}</td>
+                <td>{pendencia}</td>
+                <td>{responsavel}</td>
+                <td>{prazo}</td>
+                <td>{status}</td>
+                <td><button className="btn btn-success w-100" onClick={() => setPendenciaState({editando: true})} >OK</button></td>
+                <td><button className="btn btn-info w-100" onClick={() => setPendenciaState({editando: true})} >Comentários</button></td>
+            </tr>
         </>
     )
 }

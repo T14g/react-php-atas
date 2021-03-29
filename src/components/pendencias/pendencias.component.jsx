@@ -147,8 +147,9 @@ const Pendencias = ({
                     <th scope="col" style={{width: "18%"}}>Assuntos Discutidos</th>
                     <th scope="col" style={{width: "10%"}}>Responsável</th>
                     <th scope="col" style={{width: "13%"}}>Prazo</th>
-                    <th scope="col" style={{width: "8%"}}>Status</th>
-                    <th style={{width: "4%"}} >Action</th>
+                    <th scope="col" style={{width: "6%"}}>Status</th>
+                    <th style={{width: "2%"}} ></th>
+                    <th style={{width: "4%"}} ></th>
                     </tr>
                 </thead>
                 <tbody id="tabela-body">
