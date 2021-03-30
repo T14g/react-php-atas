@@ -9,6 +9,8 @@ import {
     loadEmails
  } from '../../redux/pendencias/pendencias.actions';
 
+import { toggleModal } from '../../redux/ata/ata.actions';
+
 import EmailList from '../emailList/emailList.component';
 import EditorPendencia from '../editorPendencia/editorPendencia.component';
 import Pendencia from '../pendencia/pendencia.component';
@@ -25,7 +27,8 @@ const Pendencias = ({
     clearNewPendencias,
     saveNewPendencias,
     listaEmail,
-    loadEmails
+    loadEmails,
+    toggleModal
 }) => {
 
     useEffect(() => {
@@ -156,7 +159,7 @@ const Pendencias = ({
                     {   
                         pendenciasAntigas.map((pendencia, i) => 
                             pendencia.status === 'PENDENTE' ? (
-                                <Pendencia objeto={pendencia} />
+                                <Pendencia objeto={pendencia} toggleModal={toggleModal} />
                             ) : null
                         )
                     }
@@ -214,7 +217,8 @@ const mapDispatchToProps = dispatch => ({
     setNewPendencias : pendencias => dispatch(setNewPendencias(pendencias)),
     clearNewPendencias : () => dispatch(deleteAllNovasPendencias()),
     saveNewPendencias: pendencia => dispatch(saveNewPendencias(pendencia)),
-    loadEmails : emails => dispatch(loadEmails(emails))
+    loadEmails : emails => dispatch(loadEmails(emails)),
+    toggleModal : () => dispatch(toggleModal())
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(Pendencias);

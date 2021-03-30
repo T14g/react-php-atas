@@ -2,55 +2,55 @@ import React from 'react';
 import './modal.styles.scss';
 import CloseButton from '../closeButton/closeButton.component';
 
-const Modal = ({ show }) => {
+const Modal = ({ show, toggle }) => {
 
     const renderHelper = () => {
         if (show) {
             return (
                 <div className='modalBackground'>
                     <div className="innerContainer">
-                        <CloseButton onClick={() => console.log("ola")} />
+                        <CloseButton onClick={toggle} />
 
                         <h3 className="title">Comentários da ata</h3>
                         <div className="comments">
                             <div className="comment">
                                 <p>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab quo vero molestiae deleniti in beatae modi magnam animi eaque quod blanditiis nesciunt magni recusandae eos doloremque minima natus, ullam debitis.
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab quo vero molestiae deleniti in beatae modi magnam animi eaque quod blanditiis nesciunt magni recusandae eos doloremque minima natus, ullam debitis.
                                 </p>
                                 <span className="commentDate">Em: 23/03/2021</span>
                             </div>
 
                             <div className="comment">
                                 <p>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab quo vero molestiae deleniti in beatae modi magnam animi eaque quod blanditiis nesciunt magni recusandae eos doloremque minima natus, ullam debitis.
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab quo vero molestiae deleniti in beatae modi magnam animi eaque quod blanditiis nesciunt magni recusandae eos doloremque minima natus, ullam debitis.
                                 </p>
                                 <span className="commentDate">Em: 23/03/2021</span>
                             </div>
 
                             <div className="comment">
                                 <p>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab quo vero molestiae deleniti in beatae modi magnam animi eaque quod blanditiis nesciunt magni recusandae eos doloremque minima natus, ullam debitis.
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab quo vero molestiae deleniti in beatae modi magnam animi eaque quod blanditiis nesciunt magni recusandae eos doloremque minima natus, ullam debitis.
                                 </p>
                                 <span className="commentDate">Em: 23/03/2021</span>
                             </div>
 
                             <div className="comment">
                                 <p>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab quo vero molestiae deleniti in beatae modi magnam animi eaque quod blanditiis nesciunt magni recusandae eos doloremque minima natus, ullam debitis.
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab quo vero molestiae deleniti in beatae modi magnam animi eaque quod blanditiis nesciunt magni recusandae eos doloremque minima natus, ullam debitis.
                                 </p>
                                 <span className="commentDate">Em: 23/03/2021</span>
                             </div>
 
                             <div className="comment">
                                 <p>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab quo vero molestiae deleniti in beatae modi magnam animi eaque quod blanditiis nesciunt magni recusandae eos doloremque minima natus, ullam debitis.
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab quo vero molestiae deleniti in beatae modi magnam animi eaque quod blanditiis nesciunt magni recusandae eos doloremque minima natus, ullam debitis.
                                 </p>
                                 <span className="commentDate">Em: 23/03/2021</span>
                             </div>
 
                             <div className="comment">
                                 <p>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab quo vero molestiae deleniti in beatae modi magnam animi eaque quod blanditiis nesciunt magni recusandae eos doloremque minima natus, ullam debitis.
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab quo vero molestiae deleniti in beatae modi magnam animi eaque quod blanditiis nesciunt magni recusandae eos doloremque minima natus, ullam debitis.
                                 </p>
                                 <span className="commentDate">Em: 23/03/2021</span>
                             </div>

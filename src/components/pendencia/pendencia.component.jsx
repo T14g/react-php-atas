@@ -1,13 +1,12 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 
 import EmailList from '../emailList/emailList.component';
 
-const Pendencia = objeto => {
+const Pendencia = ({objeto, toggleModal}) => {
 
-    const { key, numeroPendencia, pendencia, responsavel, prazo, status } = objeto.objeto;
-    const [ pendenciaState, setPendenciaState ] = useState({editando: false});
-    const { editando }  = pendenciaState;
-    console.log(objeto);
+    const { key, numeroPendencia, pendencia, responsavel, prazo, status } = objeto;
+    const [pendenciaState, setPendenciaState] = useState({ editando: false });
+    const { editando } = pendenciaState;
     // const responsaveisArray = []; 
 
     // if(ids !== "" && responsavel !== ""){
@@ -27,7 +26,7 @@ const Pendencia = objeto => {
 
     // }
 
-    return(
+    return (
         <>
             <tr key={key}>
                 <td>{numeroPendencia}</td>
@@ -35,8 +34,8 @@ const Pendencia = objeto => {
                 <td>{responsavel}</td>
                 <td>{prazo}</td>
                 <td>{status}</td>
-                <td><button className="btn btn-success w-100" onClick={() => setPendenciaState({editando: true})} >OK</button></td>
-                <td><button className="btn btn-info w-100" onClick={() => setPendenciaState({editando: true})} >Comentários</button></td>
+                <td><button className="btn btn-success w-100" onClick={() => setPendenciaState({ editando: true })} >OK</button></td>
+                <td><button className="btn btn-info w-100" onClick={() => toggleModal()} >Comentários</button></td>
             </tr>
         </>
     )

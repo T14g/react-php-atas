@@ -30,11 +30,16 @@ const ataReducer = (state = INITIAL_STATE, action) => {
             }
         
         case AtaTypes.SET_SELECTED_AREA:
-            console.log(action.payload);
             return {
                 ...state,
                 areaSelecionada: action.payload.areaName,
                 idArea: action.payload.id
+            }
+
+        case AtaTypes.TOGGLE_MODAL:
+            return {
+                ...state,
+                showModal: !state.showModal
             }
 
         default:
