@@ -218,7 +218,7 @@ const mapDispatchToProps = dispatch => ({
     clearNewPendencias : () => dispatch(deleteAllNovasPendencias()),
     saveNewPendencias: pendencia => dispatch(saveNewPendencias(pendencia)),
     loadEmails : emails => dispatch(loadEmails(emails)),
-    toggleModal : () => dispatch(toggleModal())
+    toggleModal : modalData => dispatch(toggleModal(modalData))
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(Pendencias);

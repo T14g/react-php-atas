@@ -20,6 +20,7 @@ export const setSelectedArea = (idArea,areaName) => ({
     payload: {id: idArea, areaName: areaName}
 });
 
-export const toggleModal = () => ({
-    type: AtaTypes.TOGGLE_MODAL
+export const toggleModal = (data) => ({
+    type: AtaTypes.TOGGLE_MODAL,
+    payload: data
 })

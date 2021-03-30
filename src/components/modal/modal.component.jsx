@@ -2,14 +2,14 @@ import React from 'react';
 import './modal.styles.scss';
 import CloseButton from '../closeButton/closeButton.component';
 
-const Modal = ({ show, toggle }) => {
-
+const Modal = ({ show, toggle, modalData }) => {
+    
     const renderHelper = () => {
         if (show) {
             return (
                 <div className='modalBackground'>
                     <div className="innerContainer">
-                        <CloseButton onClick={toggle} />
+                        <CloseButton onClick={() => toggle([])} />
 
                         <h3 className="title">Comentários da ata</h3>
                         <div className="comments">

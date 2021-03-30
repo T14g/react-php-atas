@@ -6,7 +6,8 @@ const INITIAL_STATE = {
     areasSetor: [],
     idArea : "",
     ultimaAta: 1,
-    showModal: false
+    showModal: false,
+    modalData: []
 }
 
 const ataReducer = (state = INITIAL_STATE, action) => {
@@ -39,7 +40,8 @@ const ataReducer = (state = INITIAL_STATE, action) => {
         case AtaTypes.TOGGLE_MODAL:
             return {
                 ...state,
-                showModal: !state.showModal
+                showModal: !state.showModal,
+                modalData: action.payload
             }
 
         default:
